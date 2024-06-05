@@ -34,9 +34,13 @@ export class AuthGuard implements CanActivate {
     if (!token) {
       throw new UnauthorizedException('No token provided.');
     }
-
+    console.log('Token:', token);
     try {
-      const payload = await this.jwtService.verify(token);
+      const payload = await this.jwtService.verify(token, {
+        secret: process.env.NEXTAUTH_SECRET,
+        algorithms: ['HS256'],
+      });
+      console.log('payload', payload);
       const uid = payload.uid;
       if (!uid) {
         throw new UnauthorizedException(

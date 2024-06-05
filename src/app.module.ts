@@ -24,15 +24,15 @@ import { VerificationsModule } from './verifications/verifications.module';
 import { StripeModule } from './stripe/stripe.module';
 
 // Todo: Move this to util lib.
-const MAX_AGE = 24 * 60 * 60;
+const MAX_AGE = 24 * 60 * 60; // 24 hours in milliseconds
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: MAX_AGE },
+      secret: process.env.NEXTAUTH_SECRET,
+      signOptions: { expiresIn: MAX_AGE, algorithm: 'HS256' },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,

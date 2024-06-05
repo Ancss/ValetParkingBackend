@@ -43,6 +43,7 @@ export class UsersService {
     password,
     image,
   }: RegisterWithCredentialsInput) {
+    console.log('registerWithCredential', { email, name, password, image });
     const existingUser = await this.prisma.credentials.findUnique({
       where: { email },
     });
