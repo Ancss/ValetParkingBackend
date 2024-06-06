@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print AWS Region
-        run: echo "AWS Region: ${{ secrets.AWS_REGION }}"
-        
+        run: echo "AWS Region:" ${{ secrets.AWS_REGION }}
+
       - name: Install Dependencies
         run: npm install --force --ignore-scripts
 
