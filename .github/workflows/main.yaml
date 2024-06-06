@@ -12,11 +12,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Print AWS Region
-        run: echo "AWS Region:" ${{ secrets.TEST }} aaa ${{secrets.test}}
-
       - name: Install Dependencies
         run: npm install --force --ignore-scripts
+
+      - name: Download .env.production file and delete it after the workflow is finished
+        uses: zdeneklapes/dotenv-vault-action@v2
+        with:
+          dotenvMe: ${{ secrets.DOTENV_ME }}
+          stage: 'production'
+          delete: 'true'
 
       - name: Generate Prisma
         run: npx prisma generate
