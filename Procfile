@@ -1,1 +1,1 @@
-web: npm run my-script
+web: npm run start:prod
