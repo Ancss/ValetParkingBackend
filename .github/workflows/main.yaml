@@ -15,12 +15,10 @@ jobs:
       - name: Install Dependencies
         run: npm install --force --ignore-scripts
 
-      - name: Download .env.production file and delete it after the workflow is finished
-        uses: zdeneklapes/dotenv-vault-action@v2
+      - name: Decrypt .env.vault
+        uses: BluMintInc/decrypt-dotenv-vault@v1
         with:
-          dotenvMe: ${{ secrets.DOTENV_ME }}
-          stage: 'production'
-          delete: 'true'
+          dotenv-key: ${{ secrets.DOTENV_ME }}
 
       - name: Generate Prisma
         run: npx prisma generate
