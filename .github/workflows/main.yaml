@@ -15,6 +15,8 @@ jobs:
       - name: Install Dependencies
         run: npm install --force --ignore-scripts
 
+      - name: Generate Prisma
+        run: npx prisma generate
       - name: Build
         run: npm run build
 
